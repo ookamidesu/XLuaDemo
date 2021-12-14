@@ -1,0 +1,10 @@
+Library/
+Temp/
+Logs/
+Packages/
+Assets/XLua/Doc
+Assets/XLua/Examples
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+XluaDemo.sln
+
