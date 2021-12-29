@@ -15,7 +15,6 @@ public class XLuaManager : MonoSingleton<XLuaManager>
     Action<float> luaFixedUpdate = null;
     
     LuaEnv luaEnv = null;
-    LuaEnv luaenv = new LuaEnv();
 
     protected  void Start()
     {

@@ -281,7 +281,7 @@ namespace XLuaDemo
                     resourceObj.ResItem = item;
                     if (resourceObj.ResItem.Obj != null)
                     {
-                        resourceObj.CloneObj = Instantiate(resourceObj.ResItem.Obj,parent, transform) as GameObject;
+                        resourceObj.CloneObj = Instantiate(resourceObj.ResItem.Obj,parent) as GameObject;
                     }
                     
                     resourceObj.Already = false;

@@ -1,13 +1,12 @@
 
----@class UIManager
-UIManager = BaseClass()
+---@class UIManager : Singleton
+UIManager = BaseClass(Singleton)
 
 function UIManager:Constructor()
     
 end
 
 function UIManager:Init()
-    print(123)
     self.canvas = {}
     self.uiRoot = GameObject.Find("UIRoot")
     local canvas = self.uiRoot.transform:Find("Canvas")
@@ -16,5 +15,15 @@ function UIManager:Init()
     self.canvas.Normal = canvas:Find("Normal")
     self.canvas.Top = canvas:Find("Top")
     self.canvas.High = canvas:Find("High")
-    print(self.canvas["High"].name)
+end
+
+---CreatePanel 创建Panel
+---@param panel BasePanel
+function UIManager:CreatePanel(panel)
+    local root = panel.conf.root;
+    panel:Create(self.canvas[root],self.OnPanelLoadFinish)
+end
+
+function UIManager:OnPanelLoadFinish()
+    print("加载完成")
 end

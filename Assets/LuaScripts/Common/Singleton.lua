@@ -4,6 +4,8 @@ Singleton = BaseClass()
 
 Singleton.Instance = nil
 
+
+---@return self
 function Singleton:GetInstance()
     if self.Instance == nil then
         self.Instance = self.New()

@@ -1,14 +1,22 @@
----@class BaseView
+---@class BaseView : BaseObject
 BaseView = BaseClass()
 
 ---@field table
 BaseView.conf = {}
 
+
 function BaseView:Constructor()
     
 end
 
-function BaseView:Create()
+---Create 创建出对象
+---@see BasePanel
+---@see BaseNode
+---@see UIManager
+---对于 BasePanel 应该交给UIManager进行调用创建,对于 BaseNode 直接创建即可. 
+---@param root table 父节点
+---@param callBack function 回调
+function BaseView:Create(root,callBack)
     onLoadSucceed = function(gameObject)
         --定义一些基础属性
         self.gameObject = gameObject
@@ -26,8 +34,9 @@ function BaseView:Create()
         self:InitUIComponent(self.transform)
 
         self:OnLoad()
+        callBack(self)
     end
-    ResMgr:LoadPrefabGameObject(self.conf.prefabPath, onLoadSucceed)
+    ObjMgr:InstantiateObjectAsync(self.conf.prefabPath, onLoadSucceed,root)
 end
 
 function BaseView:InitUIComponent(root)

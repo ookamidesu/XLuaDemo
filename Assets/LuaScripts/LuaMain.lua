@@ -5,25 +5,41 @@
 
 require("BaseRequire")
 
+---@class Game : Singleton
+Game = BaseClass(Singleton)
+
+
+
 function LuaStart()
     UIManager:Init()
-    --print("logic start")
-    --UpdateManager:GetInstance():Startup()
-    --Game:OnInitOK()
+    Game:GetInstance():InitControls()
 end
 
---[[UpdateBeat 			= event("Update")
-LateUpdateBeat		= event("LateUpdate")
-FixedUpdateBeat		= event("FixedUpdate")]]
-
---[[
-function Update1(deltaTime, unscaledDeltaTime)
+function Game:Constructor()
+    ---@type List |BaseController[] 
+    ---所有控制器
+    self.ctrls = List.New()
 end
 
-function LateUpdate1()
-  
+function Game:InitControls()
+    local ctrlPaths = {
+        "Game/UI/Login/LoginController",
+    }
+    for i,v in ipairs(ctrlPaths) do
+        print(v)
+        local ctrl = require(v)
+        print(v)
+        if type(ctrl) ~= "boolean" then
+            --调用每个Controller的Init函数
+            ctrl:Init()
+            self.ctrls:Add(ctrl)
+        else
+            --Controller类忘记了在最后return
+            print(false, '没有找到对于controller'..v)
+        end
+    end
 end
 
-function FixedUpdate1(fixedDeltaTime)
-    
-end]]
+
+
+

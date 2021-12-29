@@ -1,30 +1,21 @@
 --自己实现的list.下标从1开始
+--提供很多便利的方法,后续会拓展出Linq语法
 
 ---@class List : BaseObject
 List = BaseClass()
-List.data = {}
-List.id = 0
 
 
 function List:Constructor(...)
-    local datas = {}
-    self.data = datas
+    ---@field table
     local args = {...};
     for i = 1, #args do
-        self.data[i] = args[i]
+        self[i] = args[i]
     end
-    self.id = 0
-    
-    setmetatable(self,datas)
-    datas.__index = datas
-    datas.__tostring = List.__tostring
-    datas.__newindex  = datas
-    setmetatable(datas,self.__classType)
 end
 
 --传入元素,获取索引
 function List:IndexOf(item)
-    for i = 1, #self.data do
+    for i = 1, #self do
         if self[i] == item then
             return i
         end
@@ -34,26 +25,35 @@ end
 
 --传入委托,获取索引
 function List:ElementAt(match)
-    for i = 1, #self.data do
-        if match(self.data[i])then
+    for i = 1, #self do
+        if match(self[i])then
             return i
         end
     end
     return -1
 end
 
+function List:Contains(item)
+    for i = 1, #self do
+        if self[i] == item then
+            return true
+        end
+    end
+    return false
+end
+
 function List:FindFirst(match)
-    for i = 1, #self.data do
-        if match(self.data[i])then
-            return self.data[i]
+    for i = 1, #self do
+        if match(self[i])then
+            return self[i]
         end
     end
     return nil
 end
 
 function List:FindLast(match)
-    for i = #self.data,1 ,-1  do
-        if match(self.data[i])then
+    for i = #self,1 ,-1  do
+        if match(self[i])then
             return i
         end
     end
@@ -61,7 +61,7 @@ function List:FindLast(match)
 end
 
 function List:Add(item)
-    table.insert(self.data,item)
+    table.insert(self,item)
 end
 
 function List:AddRange(...)
@@ -73,7 +73,7 @@ end
 
 function List:Insert(index,item)
     --print(index,item)
-    table.insert(self.data,index,item)
+    table.insert(self,index,item)
 end
 
 function List:InsertRange(index,...)
@@ -85,7 +85,7 @@ function List:InsertRange(index,...)
 end
 
 function List:RemoveAt(index)
-    return table.remove(self.data,index)
+    return table.remove(self,index)
 end
 
 function List:Remove(item)
@@ -107,40 +107,37 @@ end
 
 
 function List:Length()
-   return #self.data
+   return #self
 end
 
 --计算数量,传入委托
 function List:Count(match)
-    if match then
-        local count = 0
-        for i = 1, #self.data do
-            if match(self.data[i]) then
-                count = count+1
-            end
+    local count = 0
+    for i = 1, #self do
+        if match(self[i]) then
+            count = count+1
         end
-       
-        return count
     end
-    return self:Length()
+
+    return count
 end
 
 function List:Sort(comparer)
-   table.sort(self.data,comparer)
+   table.sort(self,comparer)
 end
 
 --迭代器
 ---@type fun()
 function List:GetIterator()
     local index = 0
-    local count = #self.data
+    local count = #self
 
     return function ()
         index = index + 1
 
         if index <= count
         then
-            return self.data[index]
+            return self[index]
         end
 
     end
@@ -164,36 +161,37 @@ end]]
 
 function List:__tostring() 
     local strTable = {}
-    for i = 1, #self.data do
+    for i = 1, #self do
         --print(tostring(self.data[i]))
-        strTable[i] = tostring(self.data[i])
+        strTable[i] = tostring(self[i])
     end
     return string.format("[%s]",table.concat(strTable,","));
     
 end
 
 function List:Clear()
-    for i = 1, #self.data do
-        self.data[i] = nil
+    for i = 1, #self do
+        self[i] = nil
     end
 end
 
 function List:Clone(deepClone)
     local obj = List.New()
-    for i = 1, #self.data do
+    for i = 1, #self do
         --print("clone",self.data[i])
-        if deepClone and type(self.data[i]) == 'table' then
-            obj[i] = self.data[i]:Clone(true)
+        if deepClone and type(self[i]) == 'table' then
+            obj[i] = self[i]:Clone(true)
         else
-            obj[i] = self.data[i]
+            obj[i] = self[i]
         end
     end
     return obj
 end
 
 --测试
+--[[
 
---[[print("**************添加相关方法****************")
+print("**************添加相关方法****************")
 
 local list = List.New(1,2,3,4,5)
 print(list)
@@ -242,7 +240,7 @@ print(list:ElementAt(function(data) return data < 4 end)) --2 找到第一个小
 
 print("**************数量相关方法****************")
 print(list:Length())    --7 所有元素个数
-print(list:Count(function(data) return data > 3 end))   --所有大于3的个数
+print(list:Count(function(data) return data > 3 end))   --5所有大于3的个数
 
 
 print("**************排序相关方法****************")
@@ -257,39 +255,32 @@ print("**************迭代器遍历****************")
 
 for data in list:GetIterator() do
     print(data)
-end]]
+end
 
---[[local o = BaseObject.New();
+print("**************Clone方法****************")
+local o = BaseObject.New();
 o.id = 1
 local datas = List.New(1,o,3,4,5)
 datas.id = 2
 --print(table.concat(List.data,','))
 print(datas)
---print(datas[1])
+--[1,[id:1],3,4,5]
+
 
 local data1 =datas:Clone(true)
 data1.id = 4
 data1[1] = 2;
 datas[2].id = 2
 print(datas[2].id)
+--2
 print(data1[2].id)
+--1
 
 print(datas)
-print(data1)]]
+-- [1,[id:2],3,4,5]
+print(data1)
+--[2,[id:1],3,4,5]
 
---[[
-print(datas)
-datas:Add(nil)
-print(datas)
-datas:AddRange(7,8)
-print(datas)
-print("**************数量相关方法****************")
-print(datas:Length())
-print(datas:Count(function(data) return data > 5 end))
-
-print("**************获取相关方法****************")
-print(datas:IndexOf(2))
-print(datas:ElementAt(function(data) return data > 5 end))
 ]]
 
 

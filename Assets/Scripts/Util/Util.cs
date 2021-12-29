@@ -16,6 +16,7 @@ public class Util
             {
                 return null;
             }
+            
 
             if (!File.Exists(inFile))
             {

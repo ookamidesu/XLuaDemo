@@ -22,7 +22,7 @@ function BaseClass(super)
         --设置元表
         setmetatable(obj,classType)
         --因为在声明过程中.classType设置__index为自己.所有obj找不到数据依然会往classType中寻找
-        obj.__classType = classType
+        
         --print("new",obj.__classType)
         create(classType, obj, ...)
         --设置Object的classType
@@ -38,7 +38,7 @@ function BaseClass(super)
     end
     --将classType的__index设置为自己.以供字表使用
     classType.__index = classType
-    
+    classType.__classType = classType
     return classType
 end
 
@@ -51,19 +51,13 @@ function BaseObject:Clone(deepClone)
     --print(self.id)
     
     for key, value in pairs(self) do
-       
-        --忽略以__开始的属性
-        if(string.sub(key,1,2) == "__") then
-            goto continue
-        end
+        
         --print("clone数据",key,value)
         if deepClone and type(value) == 'table' then
             obj[key] = value:Clone(true) 
         else
             obj[key] = value
         end
-        ::continue::
-        
     end
     return obj;
 end
@@ -104,7 +98,6 @@ end
     
 
 BaseObject.__index = BaseObject
-local newData = BaseObject.New()
 
 --[[--测试继承自Object的基础方法
 TestClass = BaseClass()
