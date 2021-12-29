@@ -181,6 +181,16 @@ function Dictionary:ContainsKey(key)
     return self[key] ~= nil
 end
 
+function Dictionary:Clear()
+    local key;
+    repeat
+        key = next(self,key)
+        if key ~= null then
+            self[key] = nil
+        end
+    until key == nil
+end
+
 
 --暂时不写迭代器
 --[[function Dictionary:__pairs()
@@ -199,7 +209,6 @@ end]]
 
 
 --[[
-
 local key1 = {
 
     id=1;
@@ -236,5 +245,9 @@ print(dic:Length()) --2
 
 print(dic:Count(function(k,v) 
     return v < 3
-end)) --1]]
+end)) --1
+
+dic:Clear()
+
+print(dic:Length())]]
 
