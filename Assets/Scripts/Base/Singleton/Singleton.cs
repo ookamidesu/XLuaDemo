@@ -18,7 +18,7 @@ namespace XLuaDemo
             {
                 if(_instance == null)
                 {
-                    var ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
+                    var ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
                     var ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
 

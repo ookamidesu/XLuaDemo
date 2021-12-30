@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace XLuaDemo
 {
-    public class GenerateCodeTool : MonoBehaviour
+public class GenerateCodeTool : MonoBehaviour
 {
     /// <summary>
     /// 自动绑定表
@@ -42,6 +42,20 @@ namespace XLuaDemo
         {"Drop", "Dropdown"},
         {"Obj",""}
     };
+    
+    public enum ViewType
+    {
+        Panel,
+        Node,
+    }
+    
+    public enum ShowLayer
+    {
+        Low,
+        Normal,
+        Top,
+        High,
+    }
 
 #if UNITY_EDITOR
     [ButtonGroup("_DefaultGroup",-10f)]
@@ -74,7 +88,7 @@ namespace XLuaDemo
                     component = child.GetComponent(uiType);
                 }
 
-                string fildName = startKey;
+                string fildName =char.ToLower(startKey[0]) + startKey.Substring(1);;
                 for (var i = 1; i < names.Length; i++)
                 {
                     string str = names[i];
@@ -104,6 +118,18 @@ namespace XLuaDemo
         }
     }
 
+    private string GetRootPath(Transform child, Transform root)
+    {
+        Transform currentNode = child;
+        string currentPath = "";
+        while (currentNode && currentNode != root)
+        {
+            currentPath = $"{currentNode.name}/{currentPath}";
+            currentNode = currentNode.parent;
+        }
+        return currentPath;
+    }
+
     private void GetAllChildren(List<Transform> allNodes,Transform parent,bool isRoot)
     {
         if (!isRoot)
@@ -126,14 +152,37 @@ namespace XLuaDemo
     [LabelText("生成代码")]
     private void GenerateCode()
     {
+        if (!PrefabUtility.IsPartOfAnyPrefab(gameObject))
+        {
+            Debug.Log($"预制体不存在存在,请生成对于预制体");
+            return;
+        }
+
+        foreach (var component in m_AllComponents)
+        {
+            component.nodePath = GetRootPath(component.m_Obj.transform,transform);
+            component.ComponentName = component.m_Component?component.m_Component.GetType().ToString():"";
+        }
+        prefabPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(gameObject);
+        ComponentTemplate.WriteBindInfo(this);
+        
         
     }
+    
+    [InlineProperty]
+    [HorizontalGroup("Group2",LabelWidth = 70)]
+    public ViewType viewType;
+
+    //[ShowIf("viewType",ViewType.Panel)] 
+    [HorizontalGroup("Group2",LabelWidth = 70)]
+    public ShowLayer showLayer;
     
     [InlineButton("GeneratePrefab","生成预制体")]
     [LabelText("预制体路径")]
     [FolderPath]
     public string m_PrefabPath;
 
+   
     
     private void GeneratePrefab()
     {
@@ -168,12 +217,22 @@ namespace XLuaDemo
     [HorizontalGroup("Group1",LabelWidth = 50)]
     public string m_ClassName;
 
+    [NonSerialized] public string prefabPath;
+
 #endif
     
 
     [TableList]
     public List<BindUIComponent> m_AllComponents;
 
+    public string ScriptGenerateFilePath
+    {
+        get
+        {
+            return $"{m_GenerateCodePath}/{m_Folder}/{m_ClassName+"Generate"}.lua";
+        }
+    }
+    
     public string ScriptFilePath
     {
         get
@@ -181,6 +240,8 @@ namespace XLuaDemo
             return $"{m_GenerateCodePath}/{m_Folder}/{m_ClassName}.lua";
         }
     }
+    
+    
 }
 
 [Serializable]
@@ -194,6 +255,12 @@ public class BindUIComponent
 
     [TableColumnWidth(30)]
     public Component m_Component;
+
+    [NonSerialized] 
+    public string nodePath;
+    
+    [NonSerialized] 
+    public string ComponentName;
 }
 }
 

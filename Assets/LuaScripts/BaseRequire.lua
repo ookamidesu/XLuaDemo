@@ -13,11 +13,16 @@ LayerMask	= require "Common.UnityEngine.LayerMask"
 Plane		= require "Common.UnityEngine.Plane"
 Time		= require "Common.UnityEngine.Time"
 Object		= require "Common.UnityEngine.Object"
+
+NetMgr = CS.XLuaDemo.NetworkManager.Instance
+
 require("Common.BaseClass")
 
 require("Common.Singleton")
 require("Common.Util.List")
 require("Common.Util.Dictionary")
+
+
 
 
 --游戏模块

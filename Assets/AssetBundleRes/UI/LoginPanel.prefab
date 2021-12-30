@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2010791535}
   - component: {fileID: 2010791534}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Txt_loginTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2076613203
 RectTransform:
   m_ObjectHideFlags: 0
@@ -513,17 +513,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948ecb2c56ea3e849914629dfba0bf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewType: 0
+  showLayer: 0
   m_PrefabPath: Assets/AssetBundleRes/UI
   m_GenerateCodePath: Assets/LuaScripts/Game/UI
-  m_Folder: Login/View
-  m_ClassName: LoginPanelView
+  m_Folder: Login
+  m_ClassName: LoginView
   m_AllComponents:
-  - m_FildName: RImgImage
+  - m_FildName: rImgImage
     m_Obj: {fileID: 5761165414580103481}
     m_Component: {fileID: 5791585497915996667}
-  - m_FildName: ObjEnter
+  - m_FildName: objEnter
     m_Obj: {fileID: 8098938103889331072}
     m_Component: {fileID: 0}
-  - m_FildName: BtnLogin
+  - m_FildName: btnLogin
     m_Obj: {fileID: 2076613202}
     m_Component: {fileID: 2076613204}
+  - m_FildName: txtLoginTxt
+    m_Obj: {fileID: 2010791532}
+    m_Component: {fileID: 2010791534}

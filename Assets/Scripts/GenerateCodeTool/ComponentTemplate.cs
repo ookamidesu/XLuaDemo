@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using UnityEngine;
 
 namespace XLuaDemo
 {
@@ -8,78 +10,80 @@ namespace XLuaDemo
     {
         public static void WriteBindInfo(GenerateCodeTool codeInfo)
         {
-            var scriptFile = codeInfo.ScriptFilePath;
+            var scriptFile = codeInfo.ScriptGenerateFilePath;
 
             var codeFolder = $"{codeInfo.m_GenerateCodePath}/{codeInfo.m_Folder}";
-            if (!Directory.Exists(codeFolder))//如果不存在就创建 dir 文件夹  
+            if (!Directory.Exists(codeFolder)) //如果不存在就创建 dir 文件夹  
                 Directory.CreateDirectory(codeFolder);
 
             if (File.Exists(scriptFile))
             {
-                File.Delete(scriptFile);
+                File.WriteAllText(scriptFile, "");
             }
-            FileStream fs = new FileStream(scriptFile, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter writer = new StreamWriter(fs);
+
+            var stringBuilder = new StringBuilder();
             //var writer = File.CreateText(scriptFile);
             //声明title，用上时间以便每次都能重新编译
-            writer.WriteLine("--[[\n* OOKAMI\n* 脚本由生成器生成\n* " + DateTime.Now.ToString()+ "\n]]"  );
-               
-            //writer.WriteLine("namespace " + (string.IsNullOrEmpty(info.GenerateCodeNamespace)?"Default":info.GenerateCodeNamespace) );
-            //writer.WriteLine("{");
-            
-            /*writer.WriteLine("\tpublic partial class " + (string.IsNullOrEmpty(info.GenerateScriptName)?info.name:info.GenerateScriptName));
-            writer.WriteLine("\t{");*/
-            
-            List<string> allListName = new List<string>();
-            foreach (var bindCodeInfo in codeInfo.m_AllComponents)
+            stringBuilder.AppendLine($"--[[\n-- OOKAMI\n-- 脚本由生成器生成\n-- {DateTime.Now.ToString()}\n-- 请勿更改\n-- 请勿更改\n-- 请勿更改 \n]]\n");
+            //生成类基础信息
+
+            stringBuilder.AppendLine($"---@class {codeInfo.m_ClassName} : {"Base" + codeInfo.viewType}");
+            stringBuilder.AppendLine($"local {codeInfo.m_ClassName} = BaseClass({"Base" + codeInfo.viewType})");
+
+            //生成构造器
+            stringBuilder.AppendLine(
+                $"function {codeInfo.m_ClassName}:Constructor()\n\tself.conf = {{\n\t\tprefabPath = {"\"" + codeInfo.prefabPath + "\";"}\n\t\troot ={"\"" + codeInfo.showLayer + "\";"}\n\t}}\nend");
+            stringBuilder.AppendLine("");
+            //生成初始化方法
+            stringBuilder.AppendLine($"function {codeInfo.m_ClassName}:InitUIComponent(root)");
+            foreach (var component in codeInfo.m_AllComponents)
             {
-                /*if (bindCodeInfo.IsList)
+                if (string.IsNullOrEmpty(component.ComponentName))
                 {
-                    if (allListName.Contains(bindCodeInfo.ListName))
-                    {
-                        continue;
-                    }
-                    writer.WriteLine(string.Format("\t\tpublic global::System.Collections.Generic.List<global::{0}> m_{1};",bindCodeInfo.obj?bindCodeInfo.obj.GetType().ToString():"UnityEngine.GameObject",bindCodeInfo.ListName));
-                    allListName.Add(bindCodeInfo.ListName);
+                    //没有组件.添加obj
+                    stringBuilder.AppendLine(
+                        $"\tself.{component.m_FildName} = root:Find({"\"" + component.nodePath + "\""}).gameObject");
                 }
                 else
                 {
-                    writer.WriteLine(string.Format("\t\tpublic global::{0} m_{1};",bindCodeInfo.obj?bindCodeInfo.obj.GetType().ToString():"UnityEngine.GameObject",bindCodeInfo.Name));
-                }*/
-               
+                    //添加组件
+                    stringBuilder.AppendLine(
+                        $"\tself.{component.m_FildName} = root:Find({"\"" + component.nodePath + "\""}):GetComponent({"\"" + component.ComponentName + "\""})");
+                }
+
             }
+
+            stringBuilder.AppendLine($"end");
+            stringBuilder.AppendLine($"return {codeInfo.m_ClassName}");
+
+            File.WriteAllText(scriptFile, stringBuilder.ToString());
             
-            //writer.WriteLine("\t}");
-            //writer.WriteLine("}");
-            writer.Close();
+            Debug.Log($"生成代码成功{scriptFile}");
+            
+            var normalScriptFile = codeInfo.ScriptFilePath;
+
+            //生成正常脚本
+            if (!File.Exists(normalScriptFile))
+            {
+                //只有不存在才生成
+                stringBuilder.Clear();
+                string luaHome = "Assets/LuaScripts/";
+
+                string requirePath = scriptFile.Replace("Assets/LuaScripts/", "");
+                var index = requirePath.LastIndexOf(".");
+                requirePath = requirePath.Substring(0, index);
+
+                stringBuilder.AppendLine($"---@class {codeInfo.m_ClassName} : {"Base" + codeInfo.viewType}");
+                
+                stringBuilder.AppendLine($"local {codeInfo.m_ClassName} = require({"\"" +requirePath + "\""})");
+                stringBuilder.AppendLine("");
+                stringBuilder.AppendLine("");
+                stringBuilder.AppendLine("");
+                stringBuilder.AppendLine($"return {codeInfo.m_ClassName}");
+                File.WriteAllText(normalScriptFile, stringBuilder.ToString());
+            }
 
         }
-        
-        /*public static void WriteMono(GenerateCodeInfo info,List<BindCodeInfo> bindInfos)
-        {
-            var scriptFile = info.GenerateCodeFolder +  "/" +(string.IsNullOrEmpty(info.GenerateScriptName)?info.name:info.GenerateScriptName) + ".cs";
 
-            if (!Directory.Exists(info.GenerateCodeFolder))//如果不存在就创建 dir 文件夹  
-                Directory.CreateDirectory(info.GenerateCodeFolder);
-            if (File.Exists(scriptFile))
-            {
-                return;
-            }
-            
-            var writer = File.CreateText(scriptFile);
-            
-            writer.WriteLine("using UnityEngine;");
-            
-            writer.WriteLine("/*\n* OOKAMI\n* 脚本由生成器生成\n#1#" );
-
-            writer.WriteLine("namespace " + (string.IsNullOrEmpty(info.GenerateCodeNamespace)?"Default":info.GenerateCodeNamespace) );
-            writer.WriteLine("{");
-            writer.WriteLine("\tpublic partial class " + (string.IsNullOrEmpty(info.GenerateScriptName)?info.name:info.GenerateScriptName) + " : MonoBehaviour" );
-            writer.WriteLine("\t{");
-           
-            writer.WriteLine("\t}");
-            writer.WriteLine("}");
-            writer.Close();
-        }*/
     }
 }

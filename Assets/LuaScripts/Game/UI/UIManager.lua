@@ -27,3 +27,21 @@ end
 function UIManager:OnPanelLoadFinish()
     print("加载完成")
 end
+
+---CreatePanel 创建Panel
+---@param panel BasePanel
+function UIManager:Show(panel)
+--[[    local root = panel.conf.root;
+    panel:Create(self.canvas[root],self.OnPanelLoadFinish)]]
+end
+
+
+---CreatePanel 创建Panel
+---@param panel BasePanel
+function UIManager:Hide(panel)
+--[[    local root = panel.conf.root;
+    panel:Create(self.canvas[root],self.OnPanelLoadFinish)]]
+    panel.gameObject:SetActive(false)
+    panel.transform:SetParent(self.hideNode)
+end
+
