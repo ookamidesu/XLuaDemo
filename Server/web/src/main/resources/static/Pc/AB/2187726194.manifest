@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2799064751
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 56e5cda71976504d61abd6da94b3d391
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9e6ad29cbd2df8fbe1a15315db0e51ab
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleRes/Texture/Login_Atlas_ETC.png
+- Assets/AssetBundleRes/Texture/LoginCreateRole_Atlas_ETC.png
+Dependencies: []

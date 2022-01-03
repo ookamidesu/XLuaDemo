@@ -255,7 +255,7 @@ namespace XLuaDemo
 
         public void InstantiateObjectAsync(string path,LuaFunction func,Transform parent = null,bool bClear = false)
         {
-            XLuaManager.Instance.StartCoroutine(InstantiateAsync(path, parent,obj =>
+            GameManager.Instance.StartCoroutine(InstantiateAsync(path, parent,obj =>
             {
                 
                 func.Call(obj);

@@ -52,5 +52,17 @@ namespace XLuaDemo
 
         return crc ^ 0xffffffff;
     }
+    
+    public static uint GetCrc32(byte[] bytes)
+    {
+        int iCount = bytes.Length;
+        uint crc = 0xFFFFFFFF;
+        for (int i = 0; i < iCount; i++)
+        {
+            crc = ((crc >> 8) & 0x00FFFFFF) ^ crcTable[(crc ^ bytes[i]) & 0xFF];
+        }
+
+        return crc ^ 0xffffffff;
+    }
 }
 }

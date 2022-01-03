@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3175cc9b4d99407468668250d0a8b6b3, type: 3}
+  m_Name: ABConfig
+  m_EditorClassIdentifier: 
+  isGenerateName: 1
+  m_AllPrefabConfigs:
+  - Path: Assets/AssetBundleRes/UI
+  m_AllFileConfigs:
+  - isSingle: 0
+    ABName: luascript
+    Path: Assets/LuaScript
+  - isSingle: 0
+    ABName: texture
+    Path: Assets/AssetBundleRes/Texture
+  m_FixedPrefabConfigs: []
+  m_FixedFileConfigs: []
+  m_CacheFileConfigs: []

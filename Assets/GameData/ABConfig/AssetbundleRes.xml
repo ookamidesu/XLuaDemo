@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ResVer>0.1</ResVer>
+  <AllRes>
+    <ABRes Path="2187726194" Crc="4096533686" Length="544707" />
+    <ABRes Path="271556028" Crc="2176763318" Length="3154" />
+    <ABRes Path="3076916357" Crc="2788710262" Length="320658" />
+    <ABRes Path="946640930" Crc="2992839883" Length="32578" />
+    <ABRes Path="Pc" Crc="424163837" Length="1659" />
+  </AllRes>
+</ResList>

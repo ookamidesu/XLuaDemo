@@ -88,16 +88,20 @@ namespace XLuaDemo
             Debug.Log(_allResource.Count);
         }
 
-        public IEnumerator LoadFixedAB(Action<float> onFinish)
+        public IEnumerator LoadFixedAB(Action<float> onLoad,Action onFinish)
         {
             LoadABConfig();
+            onLoad(0);
+            yield return new WaitForSeconds(0.5f);
             for (int i = 0, count = config.FixedAB.Count - 1; i < config.FixedAB.Count; i++)
             {
                 AssetBundle bundle = LoadAssetBundle(config.FixedAB[i]);
                 bundle.LoadAllAssets();
-                onFinish((float) i / count);
+                onLoad((float) i / count);
                 yield return null;
             }
+
+            onFinish();
         }
 
         private AssetBundle LoadBundle(string path)

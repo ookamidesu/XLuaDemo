@@ -280,7 +280,7 @@ namespace XLuaDemo
             if (!isAB)
             {
                 item = AssetBundleManager.Instance.FindAsset(crc);
-                XLuaManager.Instance.StartCoroutine(LoadAssetInLocal<T>(path, obj =>
+                GameManager.Instance.StartCoroutine(LoadAssetInLocal<T>(path, obj =>
                 {
                     CacheResource(ref item, obj,crc);
                     action?.Invoke(item);
@@ -296,11 +296,12 @@ namespace XLuaDemo
 #endif
 
             item = AssetBundleManager.Instance.LoadAsset(crc);
-            XLuaManager.Instance.StartCoroutine(LoadAsset<T>(item.AssetBundle,path, obj =>
+            GameManager.Instance.StartCoroutine(LoadAsset<T>(item.AssetBundle,path, obj =>
             {
                 CacheResource(ref item, obj,crc);
+                action?.Invoke(item);
             }, func));
-            action?.Invoke(item);
+            
         }
         
         IEnumerator LoadAssetInLocal<T>(string path, Action<T> action = null, LuaFunction func = null) where T : Object
@@ -347,8 +348,9 @@ namespace XLuaDemo
         {
             var request = bundle.LoadAssetAsync<T>(assetName);
             yield return request;
+
             action(request.asset as T);
-            func.Call(new object[] { request.allAssets });
+            func?.Call( request.asset as T);
         }
 
     }

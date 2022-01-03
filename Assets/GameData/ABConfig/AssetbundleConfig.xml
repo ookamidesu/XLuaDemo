@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetBundleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ABList ABName="946640930" Path="Assets/LuaScript/BaseRequire.lua.txt" Crc="3298311823" AssetName="BaseRequire.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/BaseClass.lua.txt" Crc="1179941499" AssetName="BaseClass.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/EventDispatcher.lua.txt" Crc="1272719858" AssetName="EventDispatcher.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/EventSystem.lua.txt" Crc="3071220433" AssetName="EventSystem.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/Singleton.lua.txt" Crc="1252628092" AssetName="Singleton.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Bounds.lua.txt" Crc="2406816270" AssetName="Bounds.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Color.lua.txt" Crc="2357916412" AssetName="Color.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/LayerMask.lua.txt" Crc="3529039535" AssetName="LayerMask.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Mathf.lua.txt" Crc="2560098520" AssetName="Mathf.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Object.lua.txt" Crc="2763229522" AssetName="Object.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Plane.lua.txt" Crc="506389401" AssetName="Plane.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Quaternion.lua.txt" Crc="48935163" AssetName="Quaternion.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Ray.lua.txt" Crc="1765308770" AssetName="Ray.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/RaycastHit.lua.txt" Crc="2543147283" AssetName="RaycastHit.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Time.lua.txt" Crc="3687207038" AssetName="Time.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Touch.lua.txt" Crc="3013050449" AssetName="Touch.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Vector2.lua.txt" Crc="3500919217" AssetName="Vector2.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Vector3.lua.txt" Crc="3352354290" AssetName="Vector3.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/UnityEngine/Vector4.lua.txt" Crc="2746331195" AssetName="Vector4.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/Util/Dictionary.lua.txt" Crc="3280942820" AssetName="Dictionary.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/Util/Enum.lua.txt" Crc="2347236978" AssetName="Enum.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Common/Util/List.lua.txt" Crc="839406861" AssetName="List.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UI/BaseController.lua.txt" Crc="2251931891" AssetName="BaseController.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UI/BaseModel.lua.txt" Crc="788159700" AssetName="BaseModel.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UI/BaseNode.lua.txt" Crc="946852900" AssetName="BaseNode.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UI/BasePanel.lua.txt" Crc="3595506154" AssetName="BasePanel.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UI/BaseView.lua.txt" Crc="3074065580" AssetName="BaseView.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UIGlobal.lua.txt" Crc="3413391441" AssetName="UIGlobal.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/Common/UpdateManager.lua.txt" Crc="267964184" AssetName="UpdateManager.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/Login/LoginController.lua.txt" Crc="141604195" AssetName="LoginController.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/Login/LoginModel.lua.txt" Crc="3026136763" AssetName="LoginModel.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/Login/LoginView.lua.txt" Crc="2918931757" AssetName="LoginView.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/Login/LoginViewGenerate.lua.txt" Crc="1917937885" AssetName="LoginViewGenerate.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/MainCanvas.lua.txt" Crc="602459370" AssetName="MainCanvas.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/Game/UI/UIManager.lua.txt" Crc="2182850898" AssetName="UIManager.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/LuaMain.lua.txt" Crc="3302571410" AssetName="LuaMain.lua.txt" />
+  <ABList ABName="946640930" Path="Assets/LuaScript/rdatabinding.lua.txt" Crc="2176928962" AssetName="rdatabinding.lua.txt" />
+  <ABList ABName="2187726194" Path="Assets/AssetBundleRes/Texture/Login_Atlas_ETC.png" Crc="1144713934" AssetName="Login_Atlas_ETC.png" />
+  <ABList ABName="2187726194" Path="Assets/AssetBundleRes/Texture/LoginCreateRole_Atlas_ETC.png" Crc="221024694" AssetName="LoginCreateRole_Atlas_ETC.png" />
+  <ABList ABName="3076916357" Path="Assets/AssetBundleRes/assets0/Background/bg_choice_dream.png" Crc="3912242843" AssetName="bg_choice_dream.png" />
+  <ABList ABName="3076916357" Path="Assets/AssetBundleRes/UI/LoginPanel.prefab" Crc="903548885" AssetName="LoginPanel.prefab">
+    <ABDependce>2187726194</ABDependce>
+  </ABList>
+</AssetBundleConfig>

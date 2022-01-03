@@ -1,0 +1,52 @@
+ManifestFileVersion: 0
+CRC: 4028993446
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8d7c56ac12d88db37d2e86713f86e6c8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/LuaScript/Game/UI/Login/LoginView.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Vector4.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Object.lua.txt
+- Assets/LuaScript/Common/UnityEngine/RaycastHit.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Vector2.lua.txt
+- Assets/LuaScript/Game/Common/UI/BaseController.lua.txt
+- Assets/LuaScript/Game/Common/UI/BasePanel.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Time.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Vector3.lua.txt
+- Assets/LuaScript/Game/Common/UpdateManager.lua.txt
+- Assets/LuaScript/Game/Common/UIGlobal.lua.txt
+- Assets/LuaScript/Game/Common/UI/BaseNode.lua.txt
+- Assets/LuaScript/Common/Util/Dictionary.lua.txt
+- Assets/LuaScript/Game/UI/MainCanvas.lua.txt
+- Assets/LuaScript/Common/EventSystem.lua.txt
+- Assets/LuaScript/BaseRequire.lua.txt
+- Assets/LuaScript/Game/UI/Login/LoginController.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Plane.lua.txt
+- Assets/LuaScript/rdatabinding.lua.txt
+- Assets/LuaScript/Game/UI/Login/LoginModel.lua.txt
+- Assets/LuaScript/Common/Singleton.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Touch.lua.txt
+- Assets/LuaScript/Common/Util/Enum.lua.txt
+- Assets/LuaScript/Common/EventDispatcher.lua.txt
+- Assets/LuaScript/Game/Common/UI/BaseView.lua.txt
+- Assets/LuaScript/Game/UI/Login/LoginViewGenerate.lua.txt
+- Assets/LuaScript/Common/UnityEngine/LayerMask.lua.txt
+- Assets/LuaScript/Game/Common/UI/BaseModel.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Ray.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Mathf.lua.txt
+- Assets/LuaScript/Common/Util/List.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Bounds.lua.txt
+- Assets/LuaScript/Game/UI/UIManager.lua.txt
+- Assets/LuaScript/Common/BaseClass.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Color.lua.txt
+- Assets/LuaScript/Common/UnityEngine/Quaternion.lua.txt
+- Assets/LuaScript/LuaMain.lua.txt
+Dependencies: []

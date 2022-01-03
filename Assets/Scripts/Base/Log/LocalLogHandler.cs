@@ -51,11 +51,10 @@ namespace XLuaDemo
         {
             thread = new Thread(OnUpdateThread);
             
-            string log_dir = Path.Combine(AppConfig.DataPath, "log");
-            if (!Directory.Exists(log_dir))
-                Directory.CreateDirectory(log_dir);
+            if (!Directory.Exists(AppConfig.LogPath))
+                Directory.CreateDirectory(AppConfig.LogPath);
 
-            outputPath = Path.Combine(log_dir, "out_put.txt");
+            outputPath = Path.Combine(AppConfig.LogPath, "out_put.txt");
             
             //每次启动先删除旧的
             File.WriteAllText(outputPath, "");

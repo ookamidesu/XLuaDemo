@@ -6,6 +6,7 @@
 * @Modify:
 */
 
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -39,5 +40,37 @@ namespace XLuaDemo
         public string AssetName { get; set; }
         [XmlElement("ABDependce")]
         public List<string> ABDependce { get; set; }
+    }
+
+    [System.Serializable]
+    public class ABRes
+    {
+
+        public string Path;
+
+        public uint Crc;
+
+
+        public int Length;
+
+    }
+
+    [Serializable]
+    public class ResList
+    {
+        /// <summary>
+        /// 资源版本
+        /// </summary>
+        public string ResVer;
+
+        public List<ABRes> AllRes;
+    }
+
+    [Serializable]
+    public class VerInfo
+    {
+        public string AppVer;
+
+        public string ResVer;
     }
 }
