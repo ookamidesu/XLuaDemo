@@ -12,7 +12,8 @@ Game = BaseClass(Singleton)
 
 function LuaStart()
     UIManager:Init()
-    Game:GetInstance():InitControls()
+    print("已经使用最新的AB")
+    --Game:GetInstance():InitControls()
 end
 
 function Game:Constructor()

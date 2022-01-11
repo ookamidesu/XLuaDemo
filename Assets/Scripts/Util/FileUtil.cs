@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace XLuaDemo
@@ -61,10 +62,12 @@ namespace XLuaDemo
             return path.Substring(start, last - start);
         }
 
+        static Encoding utf8WithoutNoBom =new UTF8Encoding(false);
         public static void SerializeObjToFile(string filePath,object obj)
         {
-            var json = JsonUtility.ToJson(obj);
-            File.WriteAllText(filePath,json,Encoding.UTF8);
+            var json = JsonConvert.SerializeObject(obj);
+           
+            File.WriteAllText(filePath,json,utf8WithoutNoBom);
         }
         public static T DeserializeByFile<T>(string filePath)
         {
@@ -76,7 +79,7 @@ namespace XLuaDemo
         
         public static T  DeserializeByString<T>(string json)
         {
-            return JsonUtility.FromJson<T>(json);
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
     }

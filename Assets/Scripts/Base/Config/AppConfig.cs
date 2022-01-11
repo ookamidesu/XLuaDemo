@@ -104,7 +104,7 @@ namespace XLuaDemo
                     break;
             }
 
-            ResPlatformUrl = ResUrl + PlatformName + "/";
+            ResPlatformUrl = ResUrl + PlatformName;
 
             if (!Directory.Exists(ABPath))
             {

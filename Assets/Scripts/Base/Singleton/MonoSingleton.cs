@@ -18,7 +18,6 @@ namespace XLuaDemo
                 if (_instance == null && !_applicationIsQuit)
                 {
                     _instance = FindObjectOfType<T>();
-
                     if (FindObjectsOfType<T>().Length >= 1)
                     {
                         Debug.LogWarning("More than 1");

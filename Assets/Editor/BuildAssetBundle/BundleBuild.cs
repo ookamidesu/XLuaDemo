@@ -645,7 +645,6 @@ namespace MyBundle
         {
             var resList = new ResList();
             resList.AllRes = new List<ABRes>();
-            resList.ResVer = AppConfig.ResVersion;
             
             var abPaths = Directory.GetFiles(m_BunleTargetPath);
             foreach (var abPath in abPaths)

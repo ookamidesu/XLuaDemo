@@ -52,18 +52,20 @@ namespace XLuaDemo
 
 
         public int Length;
+        
+        public void Update(ABRes abRes)
+        {
+            this.Crc = abRes.Crc;
+            this.Path = abRes.Path;
+            this.Length = abRes.Length;
+        }
 
     }
 
     [Serializable]
     public class ResList
     {
-        /// <summary>
-        /// 资源版本
-        /// </summary>
-        public string ResVer;
-
-        public List<ABRes> AllRes;
+        public List<ABRes> AllRes = new List<ABRes>();
     }
 
     [Serializable]

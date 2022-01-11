@@ -65,17 +65,15 @@ namespace XLuaDemo
                 case State.UpdateResourceFromNet:
                     if (currentSubState == SubState.Enter)
                     {
-                        AssetsHotFixManager.Instance.CheckHotFix(p =>
+                        _loginPanel.StartUpdateRes();
+                        AssetsHotFixManager.Instance.CheckHotFix(_loginPanel.OnUpdateProgress,_loginPanel.OnUpdateDownload, () =>
                         {
-                        
-                        }, () =>
-                        {
+                            _loginPanel.EndUpdateRes();
                             currentState = State.InitAssetBundle;
                             currentSubState = SubState.Enter;
                         });
                         currentSubState = SubState.Update;
                     }
-                    
                     break;
                 case State.InitAssetBundle:
                     if (currentSubState == SubState.Enter)
