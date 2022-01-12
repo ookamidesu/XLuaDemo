@@ -17,7 +17,7 @@ namespace XLuaDemo
             {
                 if (_instance == null && !_applicationIsQuit)
                 {
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindObjectOfType<T>(true);
                     if (FindObjectsOfType<T>().Length >= 1)
                     {
                         Debug.LogWarning("More than 1");
@@ -28,8 +28,9 @@ namespace XLuaDemo
                     {
                         var instanceName = typeof(T).Name;
                         Debug.LogFormat("Instance Name: {0}", instanceName);
+                        
                         var instanceObj = GameObject.Find(instanceName);
-
+                        
                         if (!instanceObj)
                             instanceObj = new GameObject(instanceName);
 

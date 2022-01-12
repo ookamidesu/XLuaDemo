@@ -3,7 +3,13 @@
 UIManager = BaseClass(Singleton)
 
 function UIManager:Constructor()
-    
+    ---@field allPanelObj Dictionary 所有Panel obj
+    ---@type Dictionary
+    self.allPanelObj = Dictionary.New()
+
+    ---@field allPanel Dictionary 所有Panel对象
+    ---@type List | BasePanel[]
+    self.allPanel = List.New()
 end
 
 function UIManager:Init()
@@ -15,17 +21,47 @@ function UIManager:Init()
     self.canvas.Normal = canvas:Find("Normal")
     self.canvas.Top = canvas:Find("Top")
     self.canvas.High = canvas:Find("High")
+
+    self:InitDefaultPanel()
 end
+
+
+function UIManager:InitDefaultPanel()
+    local defaultPanel = {
+        ["Assets/AssetBundleRes/UI/LoginPanel.prefab"] = "UIRoot/Canvas/Low/LoginPanel",
+    }
+
+    for k, v in pairs(defaultPanel) do
+        self.allPanelObj:Add(k,GameObject.Find(v))
+    end
+    
+end
+
 
 ---CreatePanel 创建Panel
 ---@param panel BasePanel
 function UIManager:CreatePanel(panel)
-    local root = panel.conf.root;
-    panel:Create(self.canvas[root],self.OnPanelLoadFinish)
+
+    if not self.allPanel:Contains(panel) then
+
+        if self.allPanelObj:ContainsKey(panel.conf.prefabPath) then
+            panel:InitObject(self.allPanelObj[panel.conf.prefabPath])
+            self:OnPanelLoadFinish(panel)
+        else
+            local root = panel.conf.root;
+            panel:Create(self.canvas[root],self.OnPanelLoadFinish,self)
+        end
+
+        self.allPanel:Add(panel)
+    end
+    
 end
 
-function UIManager:OnPanelLoadFinish()
-    print("加载完成")
+---OnPanelLoadFinish 创建Panel完成
+---@param panel BasePanel
+function UIManager:OnPanelLoadFinish(panel)
+    print("加载完成",panel.conf.prefabPath)
+    self.allPanel:Add(panel.conf.prefabPath,panel.gameObject)
 end
 
 ---CreatePanel 创建Panel

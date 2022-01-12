@@ -1,0 +1,9 @@
+﻿---
+--- 用于Emmylua的提示
+---
+
+---@class GameObject
+GameObject = {}
+
+---@class Transform
+Transform = {}

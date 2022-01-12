@@ -1,0 +1,4 @@
+netty:
+  websocket:
+    # Websocket服务端口
+    port: 1024

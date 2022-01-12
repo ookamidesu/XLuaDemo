@@ -7,10 +7,13 @@ namespace XLuaDemo
     public class AppConfig
     {
         /// <summary>
-        /// 项目根目录
+        /// 版本号
         /// </summary>
         public static string AppVersion = "0.1";
         
+        /// <summary>
+        /// 资源版本
+        /// </summary>
         public static string ResVersion = "0.1";
         
         /// <summary>
@@ -23,31 +26,41 @@ namespace XLuaDemo
         /// </summary>
         public static string LogPath;
 
+        /// <summary>
+        /// 平台名字
+        /// </summary>
         public static string PlatformName;
 
+        /// <summary>
+        /// 资源列表路径
+        /// </summary>
         public static string ResListPath;
 
+        /// <summary>
+        /// 资源列表文件名字
+        /// </summary>
         public static string ResListName = "ResList.json";
 
-
+        /// <summary>
+        /// 版本号路径
+        /// </summary>
         public static string VerInfoPath;
         
+        /// <summary>
+        /// 版本号文件名字
+        /// </summary>
         public static string VerInfoName = "VerInfo.json";
 
-        
-
         /// <summary>
-        /// 
+        /// 项目根路径
         /// </summary>
         public static string AppDataPath;
         
-
         /// <summary>
         /// 本地lua位置
         /// </summary>
         public static string LuaAssetsDir;
-        
-        
+
         /// <summary>
         /// 本地ab目录
         /// </summary>
@@ -56,16 +69,21 @@ namespace XLuaDemo
         /// <summary>
         /// 使用bundle加载
         /// </summary>
-        public static bool IsBundle = true;
+        public static bool IsBundle = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static bool IsLocal = true;
 
         /// <summary>
         /// 资源服务器地址
-        /// 
         /// </summary>
         public static string ResUrl = "http://localhost:8080/";
         
+        /// <summary>
+        /// 资源服务器平台路径
+        /// </summary>
         public static string ResPlatformUrl;
         
 
